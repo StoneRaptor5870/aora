@@ -1,21 +1,16 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import React from "react";
+import { Link } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 
 const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Aora!</Text>
+    <View className="flex flex-1 items-center justify-center bg-white">
+      <Text className="text-3xl">Aora!</Text>
+      <StatusBar style="auto"/>
+      <Text className="pt-4"><Link href="/profile" className="text-amber-700">Go to profile</Link></Text>
     </View>
   );
 };
 
 export default App;
-
-const styles = StyleSheet.create({
-  container: {
-    display: "flex",
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
