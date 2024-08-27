@@ -31,7 +31,7 @@ const avatars = new Avatars(client);
 const databases = new Databases(client);
 
 // Register user
-export async function createUser(email, password, username) {
+export async function createUser(email: any, password: any, username: any) {
   try {
     const newAccount = await account.create(
       ID.unique(),
@@ -60,18 +60,18 @@ export async function createUser(email, password, username) {
 
     return newUser;
   } catch (error) {
-    throw new Error(error as unknown as string);
+    console.log(error);
   }
 }
 
 // Sign In
-export async function signIn(email, password: any) {
+export async function signIn(email: any, password: any) {
   try {
     const session = await account.createSession(email, password);
 
     return session;
   } catch (error) {
-    throw new Error(error);
+    console.log(error);
   }
 }
 
@@ -82,7 +82,7 @@ export async function getAccount() {
 
     return currentAccount;
   } catch (error) {
-    throw new Error(error);
+    console.log(error);
   }
 }
 
@@ -114,12 +114,12 @@ export async function signOut() {
 
     return session;
   } catch (error) {
-    throw new Error(error);
+    console.log(error);
   }
 }
 
 // Upload File
-export async function uploadFile(file, type) {
+export async function uploadFile(file: any, type: any) {
   if (!file) return;
 
   const { mimeType, ...rest } = file;
@@ -135,12 +135,12 @@ export async function uploadFile(file, type) {
     const fileUrl = await getFilePreview(uploadedFile.$id, type);
     return fileUrl;
   } catch (error) {
-    throw new Error(error);
+    console.log(error);
   }
 }
 
 // Get File Preview
-export async function getFilePreview(fileId, type) {
+export async function getFilePreview(fileId: any, type: any) {
   let fileUrl;
 
   try {
@@ -152,6 +152,7 @@ export async function getFilePreview(fileId, type) {
         fileId,
         2000,
         2000,
+        //@ts-ignore
         "top",
         100
       );
@@ -163,12 +164,12 @@ export async function getFilePreview(fileId, type) {
 
     return fileUrl;
   } catch (error) {
-    throw new Error(error);
+    console.log(error);
   }
 }
 
 // Create Video Post
-export async function createVideoPost(form) {
+export async function createVideoPost(form: any) {
   try {
     const [thumbnailUrl, videoUrl] = await Promise.all([
       uploadFile(form.thumbnail, "image"),
@@ -190,7 +191,7 @@ export async function createVideoPost(form) {
 
     return newPost;
   } catch (error) {
-    throw new Error(error);
+    console.log(error);
   }
 }
 
@@ -204,12 +205,12 @@ export async function getAllPosts() {
 
     return posts.documents;
   } catch (error) {
-    throw new Error(error);
+    console.log(error);
   }
 }
 
 // Get video posts created by user
-export async function getUserPosts(userId) {
+export async function getUserPosts(userId: any) {
   try {
     const posts = await databases.listDocuments(
       appwriteConfig.databaseId,
@@ -219,12 +220,12 @@ export async function getUserPosts(userId) {
 
     return posts.documents;
   } catch (error) {
-    throw new Error(error);
+    console.log(error);
   }
 }
 
 // Get video posts that matches search query
-export async function searchPosts(query) {
+export async function searchPosts(query: any) {
   try {
     const posts = await databases.listDocuments(
       appwriteConfig.databaseId,
@@ -236,7 +237,7 @@ export async function searchPosts(query) {
 
     return posts.documents;
   } catch (error) {
-    throw new Error(error);
+    console.log(error);
   }
 }
 
@@ -251,6 +252,6 @@ export async function getLatestPosts() {
 
     return posts.documents;
   } catch (error) {
-    throw new Error(error);
+    console.log(error);
   }
 }
