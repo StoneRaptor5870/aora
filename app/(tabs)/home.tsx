@@ -5,13 +5,19 @@ import { FlatList, Image, RefreshControl, Text, View } from "react-native";
 import { images } from "../../constants";
 import useAppwrite from "../../lib/useAppwrite";
 import { getAllPosts, getLatestPosts } from "../../lib/appWrite";
-import { EmptyState, SearchInput, Trending, VideoCard } from "../../components";
+import {
+  EmptyState,
+  SearchInput,
+  Trending,
+  VideoCard,
+} from "../../components";
 import { useGlobalContext } from "../../context/GlobalProvider";
 
 const Home = () => {
   const { user } = useGlobalContext();
   const { data: posts, refetch: refetchPosts } = useAppwrite(getAllPosts);
-  const { data: latestPosts, refetch: refetchLatestPosts } = useAppwrite(getLatestPosts);
+  const { data: latestPosts, refetch: refetchLatestPosts } =
+    useAppwrite(getLatestPosts);
 
   const [refreshing, setRefreshing] = useState(false);
 
