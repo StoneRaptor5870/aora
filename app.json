@@ -13,8 +13,7 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true,
-      "package": "com.dizbit.videoapp"
+      "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
@@ -33,6 +32,11 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c255dbdd-09aa-41c3-bea5-8f1fd9a7695b"
+      }
     }
   }
 }
